@@ -13,9 +13,15 @@ class Solution {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode retNode = reverseList(head.next);
-        head.next.next = head;
+        ListNode pre = head;
+        ListNode curr = pre.next;
+        while (curr != null) {
+            ListNode nxt = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = nxt;
+        }
         head.next = null;
-        return retNode;
+        return pre;
     }
 }
